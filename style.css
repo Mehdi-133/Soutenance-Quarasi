@@ -4,31 +4,44 @@
 }
 
 :root {
+  --primary: #e11d74;
+  --secondary: #7c3aed;
+  --light: #ffffff;
+  --dark: #000000;
   --red: #ff0000;
-  --green: #009e60;
-  --white: #ffffff;
-  --black: #000000;
-  --blue: #000080;
   --gray: #c0c0c0;
 }
 
 body {
   height: 100vh;
   font-family: "Poppins", sans-serif;
+  
 }
 
 .title {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 4rem;
+  height: 5rem;
   border: 1px solid var(--gray);
   overflow: hidden;
 }
 
+.title img {
+  height: 12rem;
+  width: 12rem;
+}
+
+.title h2 {
+  background-image: linear-gradient(to right, var(--primary), var(--secondary));
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  background-image: linear-gradient(to bottom, #ddd6fe, #FFFFFF);
 }
 
 .side-bar {
@@ -47,8 +60,8 @@ aside h3 {
 }
 
 aside button {
-  background-color: var(--green);
-  color: var(--white);
+  background-color: var(--secondary);
+  color: var(--light);
   border-radius: 10px;
   padding: 0.6rem 6rem;
   border: none;
@@ -65,7 +78,6 @@ aside button:active {
 
 .salle {
   grid-column: 2/5;
-  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -75,21 +87,19 @@ aside button:active {
 
 .salle1 {
   border-radius: 15px;
-  background-color: var(--white);
+  background-color: var(--light);
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  border: 1px solid var(--gray);
+  border: 1px solid var(--primary);
   transition: 0.7s;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 1rem;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
-.salle div:hover {
-  border-color: var(--green);
-}
+
 
 .select {
   width: 80%;
@@ -103,6 +113,12 @@ aside button:active {
   font-size: small;
 }
 
+.nothing{
+    width: 70%;
+    height: 7rem;
+    border: 2px dashed var(--red);
+}
+
 .salle p {
   font-size: small;
 }
@@ -114,8 +130,8 @@ aside button:active {
   align-items: flex-start;
   width: 350px;
   padding: 35px;
-  background-color: var(--white);
-  border: 1px solid #e5e7eb;
+  background-color: var(--light);
+  border: 1px solid var(--primary);
   border-radius: 12px;
   display: none;
   position: absolute;
@@ -126,7 +142,7 @@ aside button:active {
   font-weight: 400;
   margin-top: 12px;
   margin-bottom: 6px;
-  color: var(--black);
+  color: var(--dark);
 }
 
 .form input {
@@ -135,17 +151,17 @@ aside button:active {
   font-size: small;
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  background-color: var(--white);
+  background-color: var(--light);
 }
 
 .form button {
   width: 100%;
   margin-top: 18px;
   padding: 10px 14px;
-  background-color: var(--green);
+  background-color: var(--secondary);
   border: none;
   border-radius: 10px;
-  color: var(--white);
+  color: var(--light);
   font-weight: 500;
   font-size: 15px;
   cursor: pointer;
@@ -155,9 +171,6 @@ aside button:active {
   opacity: 0.9;
 }
 
-.form button:active{
-    opacity: 0.5;
+.form button:active {
+  opacity: 0.5;
 }
-
-
-
