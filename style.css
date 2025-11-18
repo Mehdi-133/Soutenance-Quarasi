@@ -16,6 +16,7 @@
 body {
   height: 100vh;
   font-family: "Poppins", sans-serif;
+  
   /* overflow: hidden; */
 }
 
@@ -212,8 +213,9 @@ aside button:active {
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; 
   align-items: flex-start;
+  
   width: 35rem;
   padding: 35px;
   background-color: var(--light);
@@ -224,6 +226,7 @@ aside button:active {
   bottom: 2rem;
   max-height: 500px;
   overflow-y: auto;
+  z-index: 100; 
   display: none;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
 }
@@ -278,6 +281,10 @@ aside button:active {
   opacity: 0.5;
 }
 
+.details{
+    display: none;
+   
+}
 /* mini desktop */
 
 @media screen and (min-width: 1023px) and (max-width: 1279px) {
@@ -302,9 +309,7 @@ aside button:active {
     border-bottom: 1px solid var(--gray);
   }
 
-  .salle1 {
-    width: 15rem;
-  }
+
 
   .salle {
     grid-column: 2/5;
@@ -313,6 +318,10 @@ aside button:active {
     gap: 0.8rem;
     padding: 2rem;
     height: max-content;
+  }
+
+  .rooms{
+    width: 22rem;
   }
 
   .form {
@@ -341,6 +350,11 @@ aside button:active {
     position: absolute;
     left: 20rem;
     bottom: -10rem;
+  }
+  .list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 }
 
@@ -468,4 +482,10 @@ aside button:active {
     width: 15rem;
     height: max-content
   }
+
+ .list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  } 
 }

@@ -10,6 +10,7 @@
             rel="stylesheet">
 
     </head>
+
     <body>
 
         <header class="title">
@@ -26,7 +27,10 @@
                 <div>Unassigned Staff</div>
                 <button id="add-btn"> + Add New Worker</button>
 
-                <div class="list">
+                <div id="list" class="list">
+                    <div id="items" class="items">
+
+                    </div>
                 </div>
 
             </aside>
@@ -105,42 +109,47 @@
 
                 <label for="name">Role *</label>
                 <select class="role" name="role" id="role">
-                    <option value>Choose a Role</option>
-                    <option value> Réceptionnistes </option>
-                    <option value>Cme </option>
-                    <option value>security</option>
-                    <option value>Techniciens </option>
+                    <option value>Choose a Role</option> <option
+                        value="Réceptionnistes">Réceptionnistes</option>
+                    <option value="Cme">Cme</option>
+                    <option value="security">security</option>
+                    <option value="Techniciens">Techniciens</option>
                 </select>
                 <label for="email">Email *</label>
-                <input type="email" id="email" name="email"
+                <input type="email" id="inputEmail" name="email"
                     placeholder="mehdi@gmail.com">
 
                 <label for="phone">Number *</label>
-                <input type="tel" id="phone" name="phone"
+                <input type="tel" id="inputPhone" name="phone"
                     placeholder="+212">
 
-                <label for="photo">Photo </label>
+                <!-- <label for="photo">Photo </label>
                 <input
                     type="url"
                     id="photo"
                     name="photo"
-                    placeholder="url.png">
+                    placeholder="url.png"> -->
 
-                <label for="name">Experience *</label>
+                <label for="exp">Experience </label>
                 <input id="experience" type="text" name="Experience"
-                    placeholder="your experience ">
+                    placeholder="your experience">
 
-                <label for="job">Job Title</label>
-                <input type="text" id="expTitle" name="expTitle">
+                <button type="button" id="detailsBtn">More Experience
+                    details</button>
 
-                <label for="company">Company</label>
-                <input type="text" id="expCompany" name="expCompany">
+                <div id="details" class="details">
+                    <label for="job">Job Title</label>
+                    <input type="text" id="expTitle" name="expTitle">
 
-                <label for="start">Start Date</label>
-                <input type="date" id="expStart" name="expStart">
+                    <label for="company">Company</label>
+                    <input type="text" id="expCompany" name="expCompany">
 
-                <label for="end">End Date</label>
-                <input type="date" id="expEnd" name="expEnd">
+                    <label for="start">Start Date</label>
+                    <input type="date" id="expStart" name="expStart">
+
+                    <label for="end">End Date</label>
+                    <input type="date" id="expEnd" name="expEnd">
+                </div>
 
                 <button id="submit" type="submit">Add</button>
                 <button type="canceled" id="canceled">canceled</button>
@@ -149,11 +158,15 @@
             <div class="addList" id="addList">
                 <p>select worker to assign</p>
                 <button class="remove " id="remove">x</button>
+                
+                <!-- <div id="list" class="list">
+                    <div id="items" class="items">
+
+                    </div> -->
+                </div>
 
             </div>
-            <div id="workes">
-
-            </div>
+            
             <script src="main.js"></script>
         </body>
     </html>
