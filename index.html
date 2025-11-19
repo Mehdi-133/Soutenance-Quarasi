@@ -28,9 +28,7 @@
                 <button id="add-btn"> + Add New Worker</button>
 
                 <div id="list" class="list">
-                    <div id="items" class="items">
 
-                    </div>
                 </div>
 
             </aside>
@@ -40,7 +38,8 @@
                 <div class="rooms" id="room1">
 
                     <h5>Reception</h5>
-                    <button class="plus " id="plus">+</button>
+                    <button class="plus " id="plus"
+                        data-zone="Reception">+</button>
                     <div class="nothing">
                         ⚠️ Zone empty
                     </div>
@@ -52,7 +51,8 @@
                 <div class="rooms" id="room2">
 
                     <h5>Conference room</h5>
-                    <button class="plus " id="plus">+</button>
+                    <button class="plus " id="plus"
+                        data-zone="conference">+</button>
 
                     <p id="calcule"> 3 employees</p>
 
@@ -61,7 +61,8 @@
                 <div class="rooms" id="room3">
 
                     <h5>Server room</h5>
-                    <button class="plus " id="plus">+</button>
+                    <button class="plus " id="plus"
+                        data-zone="server">+</button>
                     <div class="nothing">
                         ⚠️ Zone empty
                     </div>
@@ -71,7 +72,8 @@
                 <div class="rooms" id="room4">
 
                     <h5>Security room</h5>
-                    <button class="plus " id="plus">+</button>
+                    <button class="plus " id="plus"
+                        data-zone="security">+</button>
                     <div class="nothing">
                         ⚠️ Zone empty
                     </div>
@@ -82,7 +84,7 @@
                 <div class="rooms" id="room5">
 
                     <h5>Staff room</h5>
-                    <button class="plus " id="plus">+</button>
+                    <button class="plus " id="plus" data-zone="stuff">+</button>
 
                     <p id="calcule">3 employees</p>
 
@@ -91,7 +93,8 @@
 
                     <h5>Archive room</h5>
 
-                    <button class="plus " id="plus">+</button>
+                    <button class="plus " id="plus "
+                        data-zone="archive">+</button>
                     <div class="nothing">
                         ⚠️ Zone empty
                     </div>
@@ -108,7 +111,7 @@
                     placeholder="Full Name">
 
                 <label for="name">Role *</label>
-                <select class="role" name="role" id="role">
+                <select class="role" id="role">
                     <option value>Choose a Role</option> <option
                         value="Réceptionnistes">Réceptionnistes</option>
                     <option value="Cme">Cme</option>
@@ -120,35 +123,36 @@
                     placeholder="mehdi@gmail.com">
 
                 <label for="phone">Number *</label>
-                <input type="tel" id="inputPhone" name="phone"
+                <input type="tel" id="inputPhone"
                     placeholder="+212">
 
-                <!-- <label for="photo">Photo </label>
+                <label for="photo">Photo </label>
                 <input
                     type="url"
                     id="photo"
-                    name="photo"
-                    placeholder="url.png"> -->
-
-                <label for="exp">Experience </label>
-                <input id="experience" type="text" name="Experience"
-                    placeholder="your experience">
+                    placeholder="url.png">
 
                 <button type="button" id="detailsBtn">More Experience
                     details</button>
 
                 <div id="details" class="details">
-                    <label for="job">Job Title</label>
-                    <input type="text" id="expTitle" name="expTitle">
+                    <div>
+                        <label for="job">Job Title</label>
+                        <input type="text" id="expTitle">
+                    </div>
+                    <div>
 
-                    <label for="company">Company</label>
-                    <input type="text" id="expCompany" name="expCompany">
-
-                    <label for="start">Start Date</label>
-                    <input type="date" id="expStart" name="expStart">
-
-                    <label for="end">End Date</label>
-                    <input type="date" id="expEnd" name="expEnd">
+                        <label for="company">Company</label>
+                        <input type="text" id="expCompany">
+                    </div>
+                    <div>
+                        <label for="start">Start Date</label>
+                        <input type="date" id="expStart">
+                    </div>
+                    <div>
+                        <label for="end">End Date</label>
+                        <input type="date" id="expEnd">
+                    </div>
                 </div>
 
                 <button id="submit" type="submit">Add</button>
@@ -158,15 +162,60 @@
             <div class="addList" id="addList">
                 <p>select worker to assign</p>
                 <button class="remove " id="remove">x</button>
-                
-                <!-- <div id="list" class="list">
-                    <div id="items" class="items">
-
-                    </div> -->
-                </div>
 
             </div>
-            
+
+            <div class="modal-content" id="globalInfo">
+                <div class="modal-header">
+                    <img src="https://via.placeholder.com/100" alt="Profile"
+                        id="viewphoto" class="profile-pic">
+
+                </div>
+
+                <div class="modal-body" id="globalInfo">
+                    <div class="info-row">
+
+                        <span id="viewName" class="label"></span>
+
+                    </div>
+
+                    <div class="info-row">
+                        <span id="viewEmail" class="label"></span>
+
+                    </div>
+                    <div class="info-row">
+                        <span id="viewRole" class="label"></span>
+
+                    </div>
+
+                    <div class="info-row">
+                        <span id="viewPhone" class="label"></span>
+
+                    </div>
+                    <div class="info-row">
+                        <span id="viewTitle" class="label"></span>
+
+                    </div>
+
+                    <div class="info-row">
+                        <span id="viewCompany" class="label">Job:</span>
+
+                    </div>
+                    <div class="info-row">
+                        <span id="viewStart" class="label"></span>
+
+                    </div>
+                    <div class="info-row">
+                        <span id="viewEnd" class="label"></span>
+
+                    </div>
+
+                </div>
+
+                <button id="closeInfo" class="close-btn">Close
+                    Profile</button>
+            </div>
+
             <script src="main.js"></script>
         </body>
     </html>

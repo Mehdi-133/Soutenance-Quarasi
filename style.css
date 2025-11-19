@@ -16,8 +16,6 @@
 body {
   height: 100vh;
   font-family: "Poppins", sans-serif;
-  
-  /* overflow: hidden; */
 }
 
 .title {
@@ -36,7 +34,7 @@ body {
 }
 
 .title h2 {
-  background-image: linear-gradient(to right, var(--primary), var(--secondary));
+  background: linear-gradient(to right, var(--primary), var(--secondary));
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
@@ -131,7 +129,7 @@ aside button:active {
 }
 
 #room5 {
-  background-image: url(assets/archive.jpg);
+  background-image: url(assets/c.jpg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -213,9 +211,9 @@ aside button:active {
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; 
+  justify-content: flex-start;
   align-items: flex-start;
-  
+
   width: 35rem;
   padding: 35px;
   background-color: var(--light);
@@ -226,7 +224,7 @@ aside button:active {
   bottom: 2rem;
   max-height: 500px;
   overflow-y: auto;
-  z-index: 100; 
+  z-index: 100;
   display: none;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
 }
@@ -281,9 +279,65 @@ aside button:active {
   opacity: 0.5;
 }
 
-.details{
-    display: none;
-   
+.details {
+  display: none;
+}
+
+.modal-content {
+  background-color: var(--light);
+  width: 100%;
+  width: 400px;
+  margin: 20px auto;
+  padding: 40px;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  position: absolute;
+  left: 32rem;
+  display: none;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: var(--light);
+  margin-bottom: 15px;
+}
+
+.highlight-text {
+  margin: 0;
+  font-size: 16px;
+  color: #666;
+  font-weight: 400;
+}
+
+.info-row {
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.value {
+  color: var(--dark);
+  font-weight: 400;
+  text-align: right;
+}
+
+.close-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: var(--secondary);
+  color: var(--light);
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  opacity: 0.8;
 }
 /* mini desktop */
 
@@ -309,8 +363,6 @@ aside button:active {
     border-bottom: 1px solid var(--gray);
   }
 
-
-
   .salle {
     grid-column: 2/5;
     display: grid;
@@ -320,7 +372,7 @@ aside button:active {
     height: max-content;
   }
 
-  .rooms{
+  .rooms {
     width: 22rem;
   }
 
@@ -351,10 +403,17 @@ aside button:active {
     left: 20rem;
     bottom: -10rem;
   }
-  .list{
+  .list {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+  }
+
+  .modal-content {
+   
+    left: 15rem;
+    bottom: -10rem;
+  
   }
 }
 
@@ -480,12 +539,19 @@ aside button:active {
     left: 5rem;
     bottom: -30rem;
     width: 15rem;
-    height: max-content
+    height: max-content;
   }
 
- .list{
+  .list {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-  } 
+  }
+  .modal-content {
+   
+    width: 300px;
+    left: 4rem;
+    bottom: -12rem;
+  
+  }
 }
