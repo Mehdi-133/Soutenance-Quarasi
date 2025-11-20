@@ -188,7 +188,7 @@ aside button:active {
   padding: 1rem;
   border: 1px solid var(--primary);
   display: none;
-  
+
 
 }
 .nothing {
@@ -340,6 +340,77 @@ aside button:active {
 .close-btn:hover {
   opacity: 0.8;
 }
+
+
+.worker-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--light);
+  border: 1px solid var(--gray);
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+
+
+.worker-remove-btn {
+  position: absolute;
+  top: 0rem ;
+  left: 2rem;
+  border: none;
+  background: transparent;
+  color: #e63946;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.worker-photo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.worker-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+
+.assign-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+
+
+.assign-card-photo {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.assign-card-name {
+  font-size: 13px;
+  color: #333;
+}
+
 /* mini desktop */
 
 @media screen and (min-width: 1023px) and (max-width: 1279px) {

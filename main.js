@@ -24,6 +24,31 @@ const detailsBtn = document.getElementById("detailsBtn");
 const globalInfo = document.getElementById("globalInfo");
 const closeInfo = document.getElementById("closeInfo");
 
+const rooms = document.querySelector(".rooms");
+
+const check = {
+  reception: ["receptionnistes", "manager"],
+  server: ["techniciens", "manager"],
+  security: ["security", "manager"],
+  stuff: [
+    "manager",
+    "techniciens",
+    "receptionnistes",
+    "security",
+    "netoyage",
+    "cme",
+  ],
+  conference: [
+    "manager",
+    "techniciens",
+    "receptionnistes",
+    "security",
+    "netoyage",
+    "cme",
+  ],
+  archive: ["manager"],
+};
+
 let storedData = [];
 
 canceled.addEventListener("click", () => {
@@ -47,69 +72,55 @@ plus.forEach((btn) => {
     assignList.innerHTML = "";
 
     const zoneName = btn.getAttribute("data-zone");
-    zoneToAssign = zoneName;
+    const roomContainer = btn.closest(".room"); 
 
     addList.style.display = "flex";
 
     const selectedWorkers = storedData.filter((worker) => {
-      if (worker.zone !== null) {
-        return false;
-      }
-
       const role = worker.role.toLowerCase();
       const zone = zoneName.toLowerCase();
-
-      if (role === "manager") {
-        return true;
-      }
-
-      if (role === "netoyage") {
-        return zone !== "archive";
-      }
-
-      switch (zoneName) {
-        case "Server":
-          return role === "techniciens";
-
-        case "Reception":
-          return role === "réceptionnistes";
-        case "Security":
-          return role === "security";
-
-        case "Archive":
-          return true;
-
-        case "Conference room":
-        case "Staff room":
-        default:
-          return true;
-      }
+      const allowedRoles = check[zone];
+      if (!allowedRoles) return true;
+      if (role === "manager") return true;
+      if (role === "netoyage" && zone !== "salle d’archives") return true;
+      return allowedRoles.includes(role);
     });
 
     selectedWorkers.forEach((worker) => {
       const listItem = document.createElement("div");
-      listItem.className = "assignable-worker-item";
-      listItem.style.borderRadius = "5px";
-      listItem.style.padding = "5px 10px";
-      listItem.style.marginBottom = "5px";
-      listItem.style.display = "flex";
-      listItem.style.alignItems = "center";
-      listItem.style.cursor = "pointer";
+      listItem.className = "assign-card";
 
       const image = document.createElement("img");
+      image.className = "assign-card-photo";
       image.src = worker.photo;
-      image.style.borderRadius = "50%";
-      image.style.width = "30px";
-      image.style.height = "30px";
-      image.style.objectFit = "cover";
-      image.style.marginRight = "10px";
 
-      const nameSpan = document.createElement("span");
-      nameSpan.textContent = `${worker.name} (${worker.role})`;
+      const text = document.createElement("span");
+      text.className = "assign-card-name";
+      text.textContent = `${worker.name} (${worker.role})`;
 
       listItem.appendChild(image);
-      listItem.appendChild(nameSpan);
+      listItem.appendChild(text);
       assignList.appendChild(listItem);
+
+      listItem.addEventListener("click", () => {
+        const roomCard = document.createElement("div");
+        roomCard.className = "assign-card";
+
+        const img = document.createElement("img");
+        img.className = "assign-card-photo";
+        img.src = worker.photo;
+
+        const nameText = document.createElement("span");
+        nameText.className = "assign-card-name";
+        nameText.textContent = `${worker.name} (${worker.role})`;
+
+        roomCard.appendChild(img);
+        roomCard.appendChild(nameText);
+        rooms.appendChild(roomCard);
+
+        listItem.remove();
+        waitList.remove();
+      });
     });
   });
 });
@@ -119,7 +130,7 @@ function validateEmail(email) {
 }
 
 function validatePhone(phone) {
-  return /^[0-9+-\s()]{10,}$/.test(phone);
+  return /^(?:\+212|0)([ \-]?\d){9}$/.test(phone);
 }
 
 submit.addEventListener("click", (e) => {
@@ -135,15 +146,15 @@ submit.addEventListener("click", (e) => {
     return;
   }
 
-if (!validateEmail(inputEmail.value)) {
-        inputEmail.style.border='2px solid red'
+  if (!validateEmail(inputEmail.value)) {
+    inputEmail.style.border = "2px solid red";
     return;
-}
+  }
 
-if (!validatePhone(inputPhone.value)) {
-        inputPhone.style.border='2px solid red'
+  if (!validatePhone(inputPhone.value)) {
+    inputPhone.style.border = "2px solid red";
     return;
-}
+  }
 
   const newUser = {
     name: inputName.value,
@@ -180,63 +191,43 @@ function display() {
 
   storedData.forEach((person) => {
     const card = document.createElement("div");
+    card.className = "worker-card";
 
-    card.style.position = "relative";
-    card.style.border = "1px solid #e11d74";
-    card.style.borderRadius = "10px";
-    card.style.padding = "10px 25px";
-    card.style.marginBottom = "10px";
-
-    const removeCardBtn = document.createElement("button");
-    removeCardBtn.textContent = "X";
-
-    removeCardBtn.style.position = "absolute";
-    removeCardBtn.style.marginLeft = "40px";
-    removeCardBtn.style.top = "5px";
-    removeCardBtn.style.left = "15px";
-    removeCardBtn.style.background = "none";
-    removeCardBtn.style.border = "none";
-    removeCardBtn.style.color = "red";
-    removeCardBtn.style.cursor = "pointer";
-    removeCardBtn.style.fontWeight = "bold";
-
-    card.style.paddingLeft = "30px";
+    const removeBtn = document.createElement("button");
+    removeBtn.className = "worker-remove-btn";
+    removeBtn.textContent = "×";
 
     const image = document.createElement("img");
-    image.style.borderRadius = "50%";
-    image.style.width = "30px";
-    image.style.height = "30px";
-    image.style.objectFit = "cover";
+    image.className = "worker-photo";
     image.src = person.photo;
 
-    image.style.marginLeft = "10px";
+    const infoWrapper = document.createElement("div");
+    infoWrapper.className = "worker-info";
 
-    const info = document.createElement("p");
-    info.textContent = `Name: ${person.name}`;
+    const name = document.createElement("span");
+    name.textContent = person.name;
 
-    const description = document.createElement("p");
-    description.textContent = `Role: ${person.role}`;
+    const role = document.createElement("span");
+    role.style.color = "#666";
+    role.textContent = person.role;
 
-    card.appendChild(removeCardBtn);
+    infoWrapper.appendChild(name);
+    infoWrapper.appendChild(role);
+
+    card.appendChild(removeBtn);
     card.appendChild(image);
-    card.appendChild(info);
-    card.appendChild(description);
+    card.appendChild(infoWrapper);
     waitList.appendChild(card);
 
-    card.addEventListener("click", () => {
-      showInfo(person);
-    });
+    card.addEventListener("click", () => showInfo(person));
 
-    removeCardBtn.addEventListener("click", (e) => {
+    removeBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-
       const indexToRemove = storedData.findIndex(
         (worker) => worker.email === person.email
       );
-
       if (indexToRemove > -1) {
         storedData.splice(indexToRemove, 1);
-
         display();
       }
     });

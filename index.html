@@ -35,7 +35,7 @@
 
             <main class="salle">
 
-                <div class="rooms" id="room1">
+                <div class="rooms" id="room1" data-room = "reception">
 
                     <h5>Reception</h5>
                     <button class="plus " id="plus"
@@ -48,17 +48,18 @@
 
                 </div>
 
-                <div class="rooms" id="room2">
+                <div class="rooms" id="room2" data-room = "conference" >
 
                     <h5>Conference room</h5>
                     <button class="plus " id="plus"
                         data-zone="conference">+</button>
+                    <!-- <div class="assigned-workers"></div> -->
 
                     <p id="calcule"> 3 employees</p>
 
                 </div>
 
-                <div class="rooms" id="room3">
+                <div class="rooms" id="room3" data-room = "server">
 
                     <h5>Server room</h5>
                     <button class="plus " id="plus"
@@ -69,10 +70,10 @@
                     <p id="calcule"> 3 employees</p>
 
                 </div>
-                <div class="rooms" id="room4">
+                <div class="rooms" id="room4" data-room = "security">
 
                     <h5>Security room</h5>
-                    <button class="plus " id="plus"
+                    <button class="plus " id="plus " 
                         data-zone="security">+</button>
                     <div class="nothing">
                         ⚠️ Zone empty
@@ -81,7 +82,7 @@
                     <p id="calcule"> 3 employees</p>
 
                 </div>
-                <div class="rooms" id="room5">
+                <div class="rooms" id="room5" data-room = "stuff">
 
                     <h5>Staff room</h5>
                     <button class="plus " id="plus" data-zone="stuff">+</button>
@@ -89,7 +90,7 @@
                     <p id="calcule">3 employees</p>
 
                 </div>
-                <div class="rooms" id="room6">
+                <div class="rooms" id="room6" data-room = "archive">
 
                     <h5>Archive room</h5>
 
@@ -113,12 +114,12 @@
                 <label for="name">Role *</label>
                 <select class="role" id="role">
                     <option value>Choose a Role</option> <option
-                        value="Receptionnistes">Reseption</option>
-                    <option value="Cme">Cme</option>
-                    <option value="security">security</option>
-                    <option value="Techniciens">Techniciens</option>
-                    <option value="manager">manager</option>
-                    <option value="netoyage">netoyage</option>
+                        value="receptionnistes">Receptionnistes</option>
+                    <option value="cme">Cme</option>
+                    <option value="security">Security</option>
+                    <option value="techniciens">Techniciens</option>
+                    <option value="manager">Manager</option>
+                    <option value="netoyage">Netoyage</option>
 
                 </select>
                 <label for="email">Email *</label>
