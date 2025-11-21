@@ -11,7 +11,7 @@ const inputEmail = document.getElementById("inputEmail");
 const inputPhone = document.getElementById("inputPhone");
 const inputRole = document.getElementById("role");
 const inputPhoto = document.getElementById("photo");
-const inputexp = document.getElementById("experience");
+// const inputexp = document.getElementById("experience");
 const inputJob = document.getElementById("expTitle");
 const inputCompany = document.getElementById("expCompany");
 const inputStart = document.getElementById("expStart");
@@ -23,13 +23,12 @@ const globalInfo = document.getElementById("globalInfo");
 const closeInfo = document.getElementById("closeInfo");
 const rooms = document.querySelectorAll(".rooms");
 
-
 let storedData = [];
 
 const check = {
-  reception: ["receptionnistes", "manager"],
-  server: ["techniciens", "manager"],
-  security: ["security", "manager"],
+  reception: ["receptionnistes", "manager" , "netoyage"],
+  server: ["techniciens", "manager", "netoyage"],
+  security: ["security", "manager" , "netoyage"],
   stuff: [
     "manager",
     "techniciens",
@@ -47,6 +46,15 @@ const check = {
     "cme",
   ],
   archive: ["manager"],
+};
+
+const limit = {
+  reception: 2,
+  archive: 2,
+  stuff: 10,
+  server: 2,
+  conference: 5,
+  security: 1,
 };
 
 canceled.addEventListener("click", () => {
@@ -70,7 +78,6 @@ plus.forEach((btn) => {
     assignList.innerHTML = "";
 
     const zoneName = btn.getAttribute("data-zone");
-    //const roomContainer = btn.closest(".room");
     console.log(zoneName);
 
     addList.style.display = "flex";
@@ -79,7 +86,7 @@ plus.forEach((btn) => {
       const role = worker.role.toLowerCase();
       const zone = zoneName.toLowerCase();
       const allowedRoles = check[zone];
-      if (!allowedRoles) return true;
+      // if (!allowedRoles) return true;
       if (role === "manager") return true;
       if (role === "netoyage" && zone !== "archive") return true;
       return allowedRoles.includes(role);
@@ -127,13 +134,22 @@ plus.forEach((btn) => {
             targetRoom = room;
           }
         });
-        console.log(targetRoom)
+
+        const assignedCards = targetRoom.querySelectorAll(".assign-card");
+        if (assignedCards.length >= limit[zoneName]) {
+          alert(
+            `Limit reached: Only ${limit[zoneName]} workers allowed in ${zoneName}`
+          );
+          return;
+        }
+
+        console.log(targetRoom);
         const empty = targetRoom.querySelector(".nothing");
         if (empty) empty.style.display = "none";
-        console.log(empty)
+        console.log(empty);
         targetRoom.appendChild(roomCard);
 
-        storedData = storedData.filter((w) => w.email !== worker.email);
+        storedData = storedData.filter((w) => w.id !== worker.id);
         display();
         addList.style.display = "none";
 
@@ -153,7 +169,7 @@ plus.forEach((btn) => {
 });
 
 function validateEmail(email) {
-  return /^[^\s@]+@[^\s@]+.[^\s@]+$/.test(email);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 function validatePhone(phone) {
@@ -184,6 +200,7 @@ submit.addEventListener("click", (e) => {
   }
 
   const newUser = {
+    id: Date.now(),
     name: inputName.value,
     role: inputRole.value,
     email: inputEmail.value,
@@ -210,7 +227,7 @@ detailsBtn.addEventListener("click", () => {
 });
 
 function display() {
-  waitList.innerHTML = " ";
+  waitList.innerHTML = "";
   if (storedData.length === 0) {
     waitList.textContent = "No workers yet";
     return;
@@ -251,7 +268,8 @@ function display() {
     removeBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       const indexToRemove = storedData.findIndex(
-        (worker) => worker.email === person.email
+        // (worker) => worker.email === person.email
+        (worker) => worker.id === person.id
       );
       if (indexToRemove > -1) {
         storedData.splice(indexToRemove, 1);

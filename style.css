@@ -53,6 +53,7 @@ body {
   align-items: center;
   flex-direction: column;
   gap: 1.2rem;
+  overflow: scroll;
 }
 
 aside div {
@@ -207,6 +208,7 @@ aside button:active {
   font-size: small;
   background-color: #ffe4e1;
   overflow-y: auto;
+  margin-bottom: 10px;
 }
 
 .salle p {
