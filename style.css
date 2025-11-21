@@ -16,6 +16,7 @@
 body {
   height: 100vh;
   font-family: "Poppins", sans-serif;
+  overflow: hidden;
 }
 
 .title {
@@ -75,7 +76,6 @@ aside button:hover {
 aside button:active {
   opacity: 0.7;
 }
-
 .salle {
   grid-column: 2/5;
   display: grid;
@@ -83,10 +83,12 @@ aside button:active {
   grid-template-rows: 1fr 1fr;
   gap: 4rem;
   padding: 2rem;
-  height: max-content;
   background: linear-gradient(to bottom, #bde0fe, #003366);
-  /* height: 100vh; */
+  height: calc(100vh - 5rem); 
+  overflow-y: auto; 
+  overflow-x: hidden;
 }
+
 
 .rooms {
   border-radius: 15px;
@@ -99,10 +101,15 @@ aside button:active {
   align-items: center;
   padding-top: 1rem;
   gap: 1rem;
-  height: 13rem;
-
+  max-height: 13rem;
+  overflow-y: scroll;
   /* opacity: 0.6; */
 }
+
+.rooms::-webkit-scrollbar{
+  width: 0;
+}
+
 
 #room1 {
   background-image: url(assets/3198cd683595461f85e968e6d3cc7d09.jpg);
@@ -199,6 +206,7 @@ aside button:active {
   align-items: center;
   font-size: small;
   background-color: #ffe4e1;
+  overflow-y: auto;
 }
 
 .salle p {
@@ -212,15 +220,14 @@ aside button:active {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-
   width: 35rem;
   padding: 35px;
   background-color: var(--light);
   border: 1px solid var(--primary);
   border-radius: 12px;
   position: absolute;
-  left: 25rem;
-  bottom: 2rem;
+  left: 32rem;
+  bottom: 5rem;
   max-height: 500px;
   overflow-y: auto;
   z-index: 100;
@@ -418,11 +425,18 @@ aside button:active {
   aside button {
     padding: 0.6rem 3rem;
   }
+  body{
+    overflow: scroll;
+  }
 }
 
 /* tablet */
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    body{
+    overflow: scroll;
+  }
   .container {
     display: flex;
     flex-direction: column;
@@ -488,67 +502,13 @@ aside button:active {
   }
 }
 
-/* grand mobil */
-
-/* @media screen and (min-width: 625px) and (max-width: 768px) {
-  .title img {
-    height: 7rem;
-    width: 7rem;
-  }
-
-  .title h2 {
-    font-size: medium;
-  }
-  aside h5 {
-    margin-top: 1rem;
-    font-size: x-small;
-  }
-
-  aside button {
-    padding: 8px 7px;
-    font-size: x-small;
-  }
-
-  .form {
-    width: 15rem;
-    left: 18rem;
-  }
-
-  .form label {
-    font-weight: 200;
-  }
-
-  .form input {
-    padding: 8px 12px;
-  }
-
-  .form button {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-
-  .salle {
-    grid-template-columns: 1fr; 
-  }
-
-  .salle1 {
-    width: 15rem;
-  }
-
-  .rooms {
-    grid-column: 2/5;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-} */
 
 /*  mobil */
 
 @media screen and (max-width: 768px) {
+    body{
+    overflow: scroll;
+  }
   .container {
     display: flex;
     flex-direction: column;
@@ -603,6 +563,7 @@ aside button:active {
     flex-direction: column;
     align-items: center;
     width: 15rem;
+    height: 18rem;
   }
 
   .addList {

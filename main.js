@@ -127,10 +127,10 @@ plus.forEach((btn) => {
             targetRoom = room;
           }
         });
-
-        const emptyMsg = targetRoom.querySelector(".nothing");
-        if (emptyMsg) emptyMsg.style.display = "none";
-
+        console.log(targetRoom)
+        const empty = targetRoom.querySelector(".nothing");
+        if (empty) empty.style.display = "none";
+        console.log(empty)
         targetRoom.appendChild(roomCard);
 
         storedData = storedData.filter((w) => w.email !== worker.email);
@@ -143,8 +143,8 @@ plus.forEach((btn) => {
           display();
 
           const stillCards = targetRoom.querySelectorAll(".assign-card");
-          if (stillCards.length === 0 && emptyMsg) {
-            emptyMsg.style.display = "block";
+          if (stillCards.length === 0 && empty) {
+            empty.style.display = "block";
           }
         });
       });
