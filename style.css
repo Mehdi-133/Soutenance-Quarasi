@@ -489,8 +489,8 @@ aside button:active {
 
   .addList {
     position: absolute;
-    left: 20rem;
-    bottom: -10rem;
+    left: 15rem;
+    bottom: 1rem;
   }
   .list {
     display: flex;
@@ -570,8 +570,8 @@ aside button:active {
 
   .addList {
     position: absolute;
-    left: 5rem;
-    bottom: -30rem;
+    left: 9rem;
+    bottom: 1rem;
     width: 15rem;
     height: max-content;
   }
