@@ -22,7 +22,6 @@ const globalInfo = document.getElementById("globalInfo");
 const closeInfo = document.getElementById("closeInfo");
 const rooms = document.querySelectorAll(".rooms");
 
-
 let storedData = [];
 
 const check = {
@@ -112,6 +111,9 @@ plus.forEach((btn) => {
         const roomCard = document.createElement("div");
         roomCard.className = "assign-card";
 
+        roomCard.addEventListener("click", () => {
+          showInfo(worker);
+        });
         const removeCard = document.createElement("button");
         removeCard.textContent = "×";
         removeCard.className = "remove-Btn";
@@ -269,7 +271,6 @@ function display() {
     removeBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       const indexToRemove = storedData.findIndex(
-
         (worker) => worker.id === person.id
       );
       if (indexToRemove > -1) {

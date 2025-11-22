@@ -425,6 +425,7 @@ aside button:active {
   color: #333;
 }
 
+
 /* mini desktop */
 
 @media screen and (min-width: 1023px) and (max-width: 1279px) {
